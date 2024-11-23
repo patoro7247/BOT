@@ -2,32 +2,37 @@ import { useState } from 'react'
 import reactLogo from './assets/react.svg'
 import viteLogo from '/vite.svg'
 import './App.css'
+import FileUploadModal from './components/FileUploadModal' 
 
 function App() {
   const [count, setCount] = useState(0)
 
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleModalClose = () => {
+    setIsModalOpen(false);
+  }
+
+  const handleFileSubmit = (file) => {
+    console.log("File submitted: ", file);
+  }
+
   return (
     <>
       <div>
-        <a href="https://vite.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
+        <button onClick={() => setIsModalOpen(true)}>Open Modal</button>
+
+        <FileUploadModal isOpen={isModalOpen} onClose={handleModalClose} onSubmit={handleFileSubmit} />
+
+
       </div>
-      <h1>Vite + React</h1>
       <div className="card">
         <button onClick={() => setCount((count) => count + 1)}>
           count is {count}
         </button>
         <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
         </p>
       </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
     </>
   )
 }
