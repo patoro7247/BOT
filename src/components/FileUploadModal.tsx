@@ -1,5 +1,6 @@
 import React, {useState, useEffect} from "react";
 import Papa from "papaparse";
+import { ResponsiveLine } from '@nivo/line'
 
 interface DataPoint {
   postingDate: Date,
